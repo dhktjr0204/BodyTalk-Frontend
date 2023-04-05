@@ -2,11 +2,11 @@ import { createStore } from 'redux';
 
 import modules from './modules';
 
-// Todo: ¹Ìµé¿þ¾î
+// Todo: ë¯¸ë“¤ì›¨ì–´
 const configureStore = (initialState) => {
     const store = createStore(modules, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     
-    // hot-reloading ¸¦ À§ÇÑ ÄÚµå
+    // hot-reloading ë¥¼ ìœ„í•œ ì½”ë“œ
     if(module.hot) {
         module.hot.accept('./modules', () => {
             const nextRootReducer = require('./modules').default;
