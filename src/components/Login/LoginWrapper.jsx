@@ -4,7 +4,7 @@ import oc from 'open-color';
 import { shadow } from 'lib/styleUtil';
 import { Login } from 'containers/Login';
 
-// È­¸éÀÇ Áß¾Ó¿¡ À§Ä¡½ÃÅ²´Ù
+// í™”ë©´ì˜ ì¤‘ì•™ì— ìœ„ì¹˜ì‹œí‚¨ë‹¤
 const Positioner = styled.div`
     position: absolute;
     top: 50%;
@@ -12,14 +12,14 @@ const Positioner = styled.div`
     transform: translate(-50%, -50%);
 `;
 
-// ³Êºñ, ±×¸²ÀÚ ¼³Á¤
+// ë„ˆë¹„, ê·¸ë¦¼ì ì„¤ì •
 const ShadowedBox = styled.div`
     width: 400px;
     z-index: 999;
     ${shadow(2)}
 `;
 
-// ·Î°í
+// ë¡œê³ 
 const LogoWrapper = styled.div`
     background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
     text-align: center;
@@ -34,7 +34,7 @@ const Logo = styled.div`
     letter-spacing: 5px;
 `;
 
-// children ÀÌ µé¾î°¡´Â °÷
+// children ì´ ë“¤ì–´ê°€ëŠ” ê³³
 const Contents = styled.div`
     background: white;
     padding: 2rem;
@@ -58,13 +58,31 @@ const XButton = styled.button`
     }
 
     &:active {
-        /* Å¬¸¯½Ã ¾Æ·¡·Î ¹Ì¼¼ÇÏ°Ô ¿òÁ÷ÀÓ */
+        /* í´ë¦­ì‹œ ì•„ë˜ë¡œ ë¯¸ì„¸í•˜ê²Œ ì›€ì§ì„ */
+        transform: translateY(3px);
+    }
+`;
+
+const NButton = styled.button`
+    width: 340px;
+    height: 40px; 
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'nanumgothic';
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-color: #C3C3C3;
+    background-color: #C3C3C3;
+
+    &:hover {
+        /* í´ë¦­ì‹œ ì•„ë˜ë¡œ ë¯¸ì„¸í•˜ê²Œ ì›€ì§ì„ */
         transform: translateY(3px);
     }
 `;
 
 function AuthWrapper({ setModalOpen }) {
-    // ¸ğ´Ş ²ô±â (X¹öÆ° onClick ÀÌº¥Æ® ÇÚµé·¯)
+    // ëª¨ë‹¬ ë„ê¸° (Xë²„íŠ¼ onClick ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬)
     const closeModal = () => {
         setModalOpen(false);
     };
@@ -81,6 +99,7 @@ function AuthWrapper({ setModalOpen }) {
                 </LogoWrapper>
                 <Contents>
                     <Login></Login>
+                    <NButton onClick={closeModal}>ë¹„íšŒì›ìœ¼ë¡œ ê³„ì†í•˜ê¸°</NButton>
                 </Contents>
             </ShadowedBox>
         </Positioner>

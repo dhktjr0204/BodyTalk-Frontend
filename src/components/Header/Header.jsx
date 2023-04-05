@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import oc from 'open-color';
 import { shadow, media } from 'lib/styleUtil';
 
-// »ó´Ü °íÁ¤, ±×¸²ÀÚ
+// ìƒë‹¨ ê³ ì •, ê·¸ë¦¼ì
 const Positioner = styled.div`
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@ const Positioner = styled.div`
     ${shadow(1)}
 `;
 
-// ¹è°æ»ö oc.teal, ³»¿ë Áß°£ Á¤·Ä
+// ë°°ê²½ìƒ‰ oc.teal, ë‚´ìš© ì¤‘ê°„ ì •ë ¬
 const HeaderBackground = styled.div`
     background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
     display: flex;
@@ -22,7 +22,7 @@ const HeaderBackground = styled.div`
     ${shadow(1)};
 `;
 
-// ÇØ´õÀÇ ³»¿ë
+// í•´ë”ì˜ ë‚´ìš©
 const HeaderContents = styled.div`
     width: 1200px;
     height: 55px;
@@ -40,7 +40,7 @@ const HeaderContents = styled.div`
     `}
 `;
 
-// ·Î°í
+// ë¡œê³ 
 const Logo = styled.div`
     font-size: 2rem;
     letter-spacing: 2px;
@@ -48,7 +48,7 @@ const Logo = styled.div`
     font-family: 'Rajdhani';
 `;
 
-// Áß°£ ¿©¹é
+// ì¤‘ê°„ ì—¬ë°±
 const Spacer = styled.div`
     flex-grow: 1;
 `;

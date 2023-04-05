@@ -17,17 +17,17 @@ const BorderedButton = styled.div`
     }
 
     &:active {
-        /* Å¬¸¯½Ã ¾Æ·¡·Î ¹Ì¼¼ÇÏ°Ô ¿òÁ÷ÀÓ */
+        /* í´ë¦­ì‹œ ì•„ëž˜ë¡œ ë¯¸ì„¸í•˜ê²Œ ì›€ì§ìž„ */
         transform: translateY(3px);
     }
 `;
 
-// ·Î±×ÀÎÃ¢À» ³ëÃâÇÏ´Â ÆäÀÌÁö
+// ë¡œê·¸ì¸ì°½ì„ ë…¸ì¶œí•˜ëŠ” íŽ˜ì´ì§€
 function LoginButton() {
-    // ·Î±×ÀÎÃ¢ ³ëÃâ ¿©ºÎ state
+    // ë¡œê·¸ì¸ì°½ ë…¸ì¶œ ì—¬ë¶€ state
     const [modalOpen, setModalOpen] = useState(false);
 
-    // ·Î±×ÀÎÃ¢ ³ëÃâ
+    // ë¡œê·¸ì¸ì°½ ë…¸ì¶œ
     const showModal = () => {
         setModalOpen(true);
     };

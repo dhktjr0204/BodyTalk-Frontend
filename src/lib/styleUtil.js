@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-// ¹Ìµð¾î Äõ¸® ÇïÆÛ: https://www.styled-components.com/docs/advanced#media-templates ÂüÁ¶
+// ë¯¸ë””ì–´ ì¿¼ë¦¬ í—¬í¼: https://www.styled-components.com/docs/advanced#media-templates ì°¸ì¡°
 export const sizes = {
     wide: '1200px',
     desktop: '992px',
@@ -17,7 +17,7 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
     return acc;
 }, {});
 
-// ±×¸²ÀÚ È¿°ú: https://codepen.io/sdthornton/pen/wBZdXq ±â¹Ý
+// ê·¸ë¦¼ìž íš¨ê³¼: https://codepen.io/sdthornton/pen/wBZdXq ê¸°ë°˜
 export const shadow = (weight) => {
     const shadows = [
         css`box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);`,

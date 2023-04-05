@@ -15,7 +15,7 @@ const KButton = styled.button`
     background-color: #FEE500   ;
 
     &:hover {
-        /* Å¬¸¯½Ã ¾Æ·¡·Î ¹Ì¼¼ÇÏ°Ô ¿òÁ÷ÀÓ */
+        /* í´ë¦­ì‹œ ì•„ë˜ë¡œ ë¯¸ì„¸í•˜ê²Œ ì›€ì§ì„ */
         transform: translateY(3px);
     }
 `;

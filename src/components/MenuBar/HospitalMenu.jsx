@@ -26,7 +26,7 @@ const Menu = styled(Link)`
     }
 
     &:active {
-        /* ¸¶¿ì½º Å¬¸¯½Ã ¾Æ·¡·Î ¹Ì¼¼ÇÏ°Ô ¿òÁ÷ÀÓ */
+        /* ë§ˆìš°ìŠ¤ í´ë¦­ì‹œ ì•„ë˜ë¡œ ë¯¸ì„¸í•˜ê²Œ ì›€ì§ì„ */
         transform: translateY(3px);
     }
 `;
@@ -44,7 +44,7 @@ const CMenu = styled(Link)`
     }
 `;
 
-// ÇÏ´Ü ±×·¡µğ¾ğÆ® Å×µÎ¸®
+// í•˜ë‹¨ ê·¸ë˜ë””ì–¸íŠ¸ í…Œë‘ë¦¬
 const GradientBorder = styled.div`
     height: 3px;
     background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
