@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { handleActions, createAction } from 'redux-actions';
 
-const SET_HEADER_VISIBILITY = 'base/SET_HEADER_VISIBILITY'; // «Ï¥ı ∑ª¥ı∏µ ø©∫Œ º≥¡§
+const SET_HEADER_VISIBILITY = 'base/SET_HEADER_VISIBILITY'; // Ìó§Îçî Î†åÎçîÎßÅ Ïó¨Î∂Ä ÏÑ§Ï†ï
 
 export const setHeaderVisibility = createAction(SET_HEADER_VISIBILITY); // visible
 
