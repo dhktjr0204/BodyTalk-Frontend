@@ -20,9 +20,12 @@ const NButton = styled.button`
 `;
 
 class NaverButton extends Component {
+    handleClick = () => {
+        window.location.href = "http://localhost:8080/oauth2/authorize/naver?redirect_uri=http://localhost:3000/oauth2/redirect";
+    }
     render() {
         return (
-            <NButton>Naver</NButton>
+            <NButton onClick={this.handleClick}>Naver</NButton>
         );
     }
 }

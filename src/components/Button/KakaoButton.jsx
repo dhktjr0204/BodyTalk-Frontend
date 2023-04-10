@@ -21,9 +21,12 @@ const KButton = styled.button`
 `;
 
 class KakaoButton extends Component {
+    handleClick = () => {
+        window.location.href = "http://localhost:8080/oauth2/authorize/kakao?redirect_uri=http://localhost:3000/oauth2/redirect";
+    }
     render() {
         return (
-                <KButton>Kakao</KButton>
+                <KButton onClick={this.handleClick}>Kakao</KButton>
         );
     }
 }

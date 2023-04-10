@@ -19,9 +19,12 @@ const GButton = styled.button`
 `;
 
 class GoogleButton extends Component {
+    handleClick = () => {
+        window.location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect";
+    }
     render() {
         return (
-            <GButton>Google</GButton>
+            <GButton onClick={this.handleClick}>Google</GButton>
         );
     }
 }

@@ -56,7 +56,7 @@ const HomeMenu = () => {
         <div>
             <MenuContents>
                 <CMenu to="/">Home</CMenu>
-                <Menu to="/diagnosis">Diagnosis</Menu>
+                <Menu to="/medi">Diagnosis</Menu>
                 <Menu to="/hospital">Hospital</Menu>
                 <Menu to="/diary">Diary</Menu>
             </MenuContents>
