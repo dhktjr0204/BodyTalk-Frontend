@@ -26,9 +26,7 @@ const DiaryDetail = () => {
 
   return (
     <div>
-      <br />
-      <br />
-      <br />
+      <br /><br /><br />
       <DiaryMenu />
       {diaryInfo.tag&&(
       <DiaryForm diary={diaryInfo}></DiaryForm>)}

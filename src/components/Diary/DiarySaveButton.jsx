@@ -35,6 +35,20 @@ const DiarySaveButton = ({diary}) =>{
 
         if (diary.content.length === 0) alert("내용을 입력해주세요");
         else if (diary.tag.length === 0) alert("태그를 1개 이상 선택해주세요");
+        else if(!diary.id) {
+            axios
+                .post(`/api/diary`, data, {
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+                },
+                })
+                .then((res) => {
+                    onDiaryPostComplete();
+                })
+                .catch((err) => {
+                    console.log("다이어리 save 에러", err);
+                });
+            }
         else {
             axios
                 .post(`/api/diary/${diary.id}`, data, {

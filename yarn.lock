@@ -7864,6 +7864,11 @@
     "shallowequal" "^1.1.0"
     "source-map" "^0.7.3"
 
+"react-icons@^4.8.0":
+  "integrity" "sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg=="
+  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.8.0.tgz"
+  "version" "4.8.0"
+
 "react-intersection-observer@^9.4.3":
   "integrity" "sha512-WNRqMQvKpupr6MzecAQI0Pj0+JQong307knLP4g/nBex7kYfIaZsPpXaIhKHR+oV8z+goUbH9e10j6lGRnTzlQ=="
   "resolved" "https://registry.npmjs.org/react-intersection-observer/-/react-intersection-observer-9.4.3.tgz"
@@ -7931,7 +7936,7 @@
   dependencies:
     "@remix-run/router" "1.5.0"
 
-"react@^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 15.3.0", "react@>= 16.8.0", "react@>=16.3.0", "react@>=16.8":
+"react@*", "react@^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 15.3.0", "react@>= 16.8.0", "react@>=16.3.0", "react@>=16.8":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

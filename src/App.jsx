@@ -4,6 +4,7 @@ import { Home, Diagnosis, Hospital, Diary} from 'pages';
 import RedirectPage from 'pages/RedirectPage';
 import HeaderContainer from 'containers/Header/HeaderContainer';
 import DiaryDetail from 'pages/DiaryDetail';
+import CreateDiary from 'pages/CreateDiary';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
               <Route exact path="/diary" element={<Diary />}/>
               <Route path="/oauth2/redirect" element={<RedirectPage />}/>
               <Route path="/diary/:id" element={<DiaryDetail />}/>
+              <Route path="/new-diary" element={<CreateDiary />}/>
             </Routes>
           </div>
       );

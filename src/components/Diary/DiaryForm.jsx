@@ -22,25 +22,28 @@ const DateButton = styled.button`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const DiaryInfo = styled.div`
+const DiaryInfo = styled.textarea`
   font-size: 18px;
   margin-bottom: 16px;
   border: 1px solid gray;
   padding: 24px;
   display: flex;
   align-items: flex-start;
+  width: 100%;
+  height: 200px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 `;
 
 
-const DiaryForm = ({diary,setDiary}) =>{
+const DiaryForm = ({diary}) =>{
     const [diaryInfo, setDiaryInfo] = useState(diary);
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(diary.date);
 
     //글 수정
-    const handleContentChange = (event) => {
-        setDiaryInfo({ ...diaryInfo, content: event.target.innerText });
-        console.log(diaryInfo);
+    const handleContentChange = (value) => {
+        setDiaryInfo((prev) => ({...prev,content: value,}));
     };
     
     //날짜 클릭하면 캘린더 나오게 하는 거
@@ -68,7 +71,11 @@ const DiaryForm = ({diary,setDiary}) =>{
             showNeighboringMonth={false} 
           />
         )}
-        <DiaryInfo contentEditable={true} onBlur={handleContentChange}>{diaryInfo.content}</DiaryInfo>
+        <DiaryInfo  
+            type="text" 
+            value={diaryInfo.content} 
+            onChange={(e) => handleContentChange(e.target.value)} >
+        </DiaryInfo>
         <DiarySaveButton diary={diaryInfo} ></DiarySaveButton>
     </DiaryWrapper>
     );
