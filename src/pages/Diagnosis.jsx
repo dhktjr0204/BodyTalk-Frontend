@@ -15,7 +15,7 @@ const Diagnosis = () => {
 
       console.log(inputText)
 
-      if (inputText == "") alert("내용을 입력해주세요");
+      if (inputText === "") alert("내용을 입력해주세요");
       else{
 
         setIsLoading(true);
@@ -54,6 +54,8 @@ const Diagnosis = () => {
           }
       }
   };
+
+  //사용자가 증상을 입력하고 확인 누르면 이 화면띄움
   if (diagnosis){
     return(
     <div>

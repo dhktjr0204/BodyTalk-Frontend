@@ -2,6 +2,7 @@ import React from 'react';
 
 const DiagnosisDetail = ({diagnosis}) => {
     const { disease, diseaseInfo, cause, type } = diagnosis;
+    
     return (
         <div>
         <p>
