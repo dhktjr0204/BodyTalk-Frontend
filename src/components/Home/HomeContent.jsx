@@ -6,9 +6,12 @@ import styled from 'styled-components';
  //너비에 따라 높이 자동 조정 
 
  const BigHomeGraph = styled.div`
+    height: 400px;
+    width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 `;
 
 

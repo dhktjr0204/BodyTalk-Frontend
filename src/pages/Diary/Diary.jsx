@@ -7,12 +7,33 @@ import moment from "moment";
 import DiaryBoard from 'components/Diary/DiaryBoard';
 import styled from 'styled-components';
 import CalenderForm from 'components/Diary/CalendarForm';
+import { remove } from 'react-cookies';
 
-const Middle = styled.div`
+const DiaryCalendarWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 55vh;
 `;
+const ChartWrapper = styled.div`
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+const ChartButton = styled.button`
+    padding: 8px 16px;
+    background-color: #0077c2;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+`;
+
 const Diary = () => {
     const [date, setDate] = useState(new Date());
     const [isClicked, setIsClicked] = useState(false);
@@ -29,7 +50,11 @@ const Diary = () => {
             setIsClicked(true);
             setDate(value);
           }
-      }
+    }
+
+    const onClickChart = () => {
+        navigate("/diary/chart");
+    }
 
     useEffect(() => {
         if (sessionStorage.getItem("accessToken")) {
@@ -46,8 +71,20 @@ const Diary = () => {
             })
             .catch((err) => {
                 alert("불러오기에 실패하였습니다.");
+
+                //만약 로그인 시간이 만료된다면 이 오류띄움
+                if (err.response && err.response.status === 401) {
+                    alert("로그인이 만료되어 로그아웃합니다.");
+                    sessionStorage.removeItem("accessToken");
+                    remove('JSESSIONID');//쿠키삭제
+                    navigate("/");
+                } else {
+                    alert("불러오기에 실패하였습니다.");
+                }
+
                 console.log("데이터 가져오기 에러", err);
             });
+
         } else {
             alert("로그인이 필요한 서비스입니다.");
             navigate("/");
@@ -68,7 +105,6 @@ const Diary = () => {
         const marks = diaryDatas.map((item) => item.date);
         setMark(marks);
         }, [diarys]);
-        
 
 //mark는 사용자가 적은 일기의 날짜들이 저장되어 있음
    return (
@@ -76,10 +112,15 @@ const Diary = () => {
         <br></br><br></br><br></br>
         <DiaryMenu></DiaryMenu>
         <h1>증상 일기 쓰기</h1>
-        <Middle>
+        
+        <DiaryCalendarWrapper>
             <CalenderForm onChange={onClickDate} date={date} mark={mark} />
             {isClicked && <DiaryBoard date={date} diarys={diarys} />}
-        </Middle>
+        </DiaryCalendarWrapper>
+        <ChartWrapper>
+            <ChartButton onClick={onClickChart}>통계 보기</ChartButton>
+        </ChartWrapper>
+       
     </div>
 );
 }

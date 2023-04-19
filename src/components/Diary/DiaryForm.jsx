@@ -5,7 +5,7 @@ import DiarySaveButton from './DiarySaveButton';
 import Calendar from 'react-calendar';
 import TagHeader from './TagHeader';
 
-const DiaryWrapper = styled.div`
+const CenterWrapper = styled.div`
   width: 60%;
   margin: auto;
   background-color: rgba(255, 255, 255, 0.8);
@@ -22,7 +22,9 @@ const DateButton = styled.button`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const DiaryInfo = styled.textarea`
+const Text = styled.textarea`
+  font-family: 'monospace';
+  font-weight:700;
   font-size: 18px;
   margin-bottom: 16px;
   border: 1px solid gray;
@@ -59,7 +61,7 @@ const DiaryForm = ({diary}) =>{
     };
     
     return(
-    <DiaryWrapper>
+    <CenterWrapper>
         <TagHeader diary={diaryInfo} setDiary={setDiaryInfo}></TagHeader>
         <DateButton onClick={handleCalendarClick}>{moment(selectedDate).format("YYYY-MM-DD")}</DateButton>
         {showCalendar && (
@@ -71,13 +73,13 @@ const DiaryForm = ({diary}) =>{
             showNeighboringMonth={false} 
           />
         )}
-        <DiaryInfo  
+        <Text  
             type="text" 
             value={diaryInfo.content} 
             onChange={(e) => handleContentChange(e.target.value)} >
-        </DiaryInfo>
+        </Text>
         <DiarySaveButton diary={diaryInfo} ></DiarySaveButton>
-    </DiaryWrapper>
+    </CenterWrapper>
     );
     
  }

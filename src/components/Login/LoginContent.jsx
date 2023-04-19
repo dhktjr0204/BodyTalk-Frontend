@@ -12,7 +12,6 @@ const Title = styled.div`
 const LoginContent = ({title, children}) => (
     <div>
         <Title>{title}
-        <a href="http://localhost:8080/oauth2/authorize/kakao?redirect_uri=http://localhost:3000/oauth2/redirect"></a>
         </Title>
         {children}
     </div>
