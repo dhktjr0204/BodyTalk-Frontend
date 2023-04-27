@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import moment from "moment";
 import { useNavigate } from 'react-router-dom';
 import DiaryDeleteButton from './DiaryDeleteButton';
+import TagColorButton from './TagColorButton';
 
 const DiaryBoardWrapper = styled.div`
     margin: 0 auto;
@@ -82,11 +83,7 @@ const DiaryBoard = ({ date, diarys }) =>{
              <DiaryContentText>{diary.content} </DiaryContentText> 
 
             <div style={{margin: '16px 0'}}>
-
-                {diary.tag.map((tag , index)=>(
-                <TagWrapper key={index}>{tag}</TagWrapper>
-                ))}
-
+                <TagColorButton tags={diary.tag}></TagColorButton>
             </div>
 
         </DiaryWrapper>

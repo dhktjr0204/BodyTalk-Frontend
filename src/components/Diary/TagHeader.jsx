@@ -5,6 +5,7 @@ const Wrapper = styled.div`
     margin: 20px;
 `;
 
+//선택 안된 태그
 const TagWrapper = styled.div`
   display: inline-block;
   padding: 10px 20px;
@@ -14,6 +15,7 @@ const TagWrapper = styled.div`
   border: 1px solid #8E8E8E;
 `;
 
+//부위(머리 기관지) 태그 스타일
 const TypeWrapper = styled.button`
   background-color: #CFBAD0;
   border: none;
@@ -32,6 +34,7 @@ const TypeWrapper = styled.button`
   }
 `;
 
+//선택됐을때 태그 색
 const TagSelectWrapper = styled.div`
   display: inline-block;
   background-color: #BBBBBB;
@@ -56,7 +59,7 @@ const TagHeader = ({diary, setDiary}) =>{
         "팔다리":["관절통","어깨 통증","팔 통증","다리 통증","무릎 통증","외상","저림"],
         "피부":["여드름","각질","홍조","반점","습진"]
     };
-
+    
     //tag가 달라질때마다 setDiary해서 바꿔준다.
     useEffect(() => {
         setDiary((prevDiary) => ({ ...prevDiary, tag: selectedTags }));

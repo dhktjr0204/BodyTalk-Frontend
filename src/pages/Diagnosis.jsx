@@ -1,4 +1,3 @@
-import axios from 'axios';
 import DiagnosisButton from 'components/Diagnosis/DiagnosisButton';
 import DiagnosisDetail from 'components/Diagnosis/DiagnosisDetail';
 import { DiagnosisMenu } from 'components/MenuBar';

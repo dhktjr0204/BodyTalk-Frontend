@@ -8120,6 +8120,11 @@
   "resolved" "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz"
   "version" "1.0.0"
 
+"requset@^0.0.1-security":
+  "integrity" "sha512-YiF8XxOQofGwWCs8fGjgGc4WzJSD3ktuFKbiqCAWHFrHcDDbq/fQZWbU0CmN0GxAdUHW6OtJcKgsNr3wile37w=="
+  "resolved" "https://registry.npmjs.org/requset/-/requset-0.0.1-security.tgz"
+  "version" "0.0.1-security"
+
 "resolve-cwd@^3.0.0":
   "integrity" "sha512-OrZaX2Mb+rJCpH/6CpSqt9xFVpN++x01XnN2ie9g6P5/3xelLAkXWVADpdz1IHD/KFfEXyE6V0U01OQ3UO2rEg=="
   "resolved" "https://registry.npmjs.org/resolve-cwd/-/resolve-cwd-3.0.0.tgz"
