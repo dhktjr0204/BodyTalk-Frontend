@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import DiaryDeleteButton from './DiaryDeleteButton';
 import TagColorButton from './TagColorButton';
 
+//다이어리 모음 감싸주는거
 const DiaryBoardWrapper = styled.div`
     margin: 0 auto;
     width: 30%; 
@@ -16,7 +17,7 @@ const DiaryBoardWrapper = styled.div`
     border-radius: 16px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 `;
-
+//다이어리 컨텐츠 감싸주는거
 const DiaryWrapper = styled.div`
     margin-bottom: 10px;
     background-color: #EEEEEE;
@@ -25,23 +26,14 @@ const DiaryWrapper = styled.div`
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 `;
-
+//다이어리 내용 폰트
 const DiaryContentText = styled.div`
   font-family: 'monospace';
   font-weight:700;
   font-size: 30px;
   color: #8C8C8C;
 `;
-
-const TagWrapper = styled.div`
-  background-color: #D6A4A4;
-  display: inline-block;
-  padding: 10px 20px;
-  margin-right: 4px;
-  border-radius: 8px;
-  font-size: 16px;
-`;
-
+//글쓰기 버튼
 const CreateButton = styled.button`
   background: transparent;
   border: none;
