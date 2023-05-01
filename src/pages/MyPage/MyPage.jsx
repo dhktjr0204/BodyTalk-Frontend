@@ -72,7 +72,7 @@ const MyPage = ({ isLoggedIn, setIsLoggedIn }) => {
         </h1>
         <p>닉네임: {userInfo.name}</p>
         <p>이메일: {userInfo.email}</p>
-        <p>닉네임: {userInfo.sex}</p>
+        <p>성별: {userInfo.sex}</p>
         <p>나이: {userInfo.age}</p>
       </MypageWrapper>
 

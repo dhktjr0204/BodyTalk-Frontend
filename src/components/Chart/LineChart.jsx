@@ -40,7 +40,7 @@ const LineChart = ({top3SymptomInfo,startDate, endDate}) => {
         const datasets = [];
         top3SymptomInfo.forEach((symptom, index) => {
             const dataset = {
-                label: symptom.symtomRank,
+                label: index+1+"위 "+symptom.symtomRank,
                 data: [],
                 fill: false,
                 borderColor: ['rgb(54, 162, 235, 0.7)', 'rgb(255, 99, 132, 0.7)','rgb(75, 192, 192, 0.7)'][index],
