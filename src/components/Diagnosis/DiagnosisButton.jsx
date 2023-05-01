@@ -25,8 +25,7 @@ const DiagnosisButton = ({inputText,setIsLoading,setDiagnosis}) =>{
         //formdata형식으로 서버에 전달
         const formData=new FormData();
         formData.append("content",inputText);
-        console.log("diagnosisbutton에서",inputText);
-  
+
         if (inputText === "") alert("내용을 입력해주세요");
         else{
           setIsLoading(true);

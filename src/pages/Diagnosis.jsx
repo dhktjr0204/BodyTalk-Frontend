@@ -1,7 +1,7 @@
 import DiagnosisButton from 'components/Diagnosis/DiagnosisButton';
 import DiagnosisDetail from 'components/Diagnosis/DiagnosisDetail';
 import { DiagnosisMenu } from 'components/MenuBar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const CenterWrapper = styled.div`
@@ -31,11 +31,30 @@ const Diagnosis = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputText, setInputText] = useState("");
   const [diagnosis, setDiagnosis] = useState(null); 
+  const [hospitals, setHospitals] = useState([]);
+  const [userLocation, setUserLocation] = useState({lat: 37.54,lng: 126.99});
+
   //글 수정
   const handleInputChange = (value) => {
-    console.log("dianosis에서",inputText);
     setInputText(value);
   };
+  //내 위치 좌표 구하기
+  useEffect(() => {
+    const getLocation = async () => {
+      try {
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+        setUserLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getLocation();
+  }, []);
 
   //사용자가 증상을 입력하고 확인 누르면 이 화면띄움
   if (diagnosis){
@@ -44,7 +63,7 @@ const Diagnosis = () => {
       <br></br><br></br><br></br>
       <DiagnosisMenu></DiagnosisMenu>
       <div>
-        <DiagnosisDetail diagnosis={diagnosis} />
+        <DiagnosisDetail diagnosis={diagnosis} userLocation={userLocation} hospitals={hospitals} setHospitals={setHospitals} />
       </div>
     </div>
     )

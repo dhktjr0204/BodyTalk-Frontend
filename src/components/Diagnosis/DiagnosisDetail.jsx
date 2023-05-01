@@ -1,5 +1,8 @@
-import React from 'react';
+import HospitalDisplay from 'components/Hospital/HospitalDisplay';
+import NaverMapAPI from 'components/Hospital/NaverMapAPI';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const CenterWrapper = styled.div`
   width: 60%;
@@ -24,10 +27,40 @@ const ReloadButton = styled.button`
   margin-top: 16px;
 `;
 
+const MapAndHospitalsWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+`;
 
-const DiagnosisDetail = ({diagnosis}) => {
+const DiagnosisDetail = ({diagnosis, userLocation, hospitals, setHospitals}) => {
+    const [clickHospital, setClickHospital]=useState(null);
+
     const { disease, diseaseInfo, cause, type } = diagnosis;
-    
+
+    //병원 리스트 가져오기
+    useEffect(() => {
+      const getHospitals = async () => {
+        if (userLocation.lat !== 37.54) {
+          const data = {
+            type: type,
+            lat: userLocation.lat,
+            lon: userLocation.lng
+          };
+          try {
+            const res = await axios.post(`/api/hospital`, data);
+            setHospitals(res.data);
+          } catch (err) {
+            console.log(err);
+            alert("불러오기에 실패하였습니다.");
+          }
+        }
+      };
+      getHospitals();
+    }, [userLocation]);
+
+
     return (
         <CenterWrapper>
           <h1>증상</h1>
@@ -36,8 +69,18 @@ const DiagnosisDetail = ({diagnosis}) => {
           <div>{diseaseInfo}</div>
           <h1>원인</h1>
           <div>{cause}</div>
-          <h1>방문해야될 병원</h1>
-          <div>{type}</div>
+          <h1>추천병원</h1>
+          
+          <MapAndHospitalsWrapper>
+            <NaverMapAPI
+                  Latitude={userLocation.lat}
+                  Longtitude={userLocation.lng}
+                  hospitals={hospitals}
+                  clickHospital={clickHospital} setClickHospital={setClickHospital}
+            />
+            {hospitals.length>0&&(<HospitalDisplay hospitals={hospitals} clickHospital={clickHospital} setClickHospital={setClickHospital}/>)}
+          </MapAndHospitalsWrapper>
+
         <ReloadButton onClick={() => window.location.reload()}>다시 진단받기</ReloadButton>
       </CenterWrapper> 
     );
