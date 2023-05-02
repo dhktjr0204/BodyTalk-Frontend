@@ -51,7 +51,7 @@ const HospitalDisplay = ({hospitals, clickHospital, setClickHospital}) =>{
         return displayTime;
     };
 
-    //병원 정보 클릭하면 해당 병원이 맵 가운데로 오게끔 설정 
+    //병원 정보 클릭하면 해당 병원이 맵 가운데로 오게끔 설정(클릭한 병원 정보 저장)
     const handleHospitalClick = (hospital) =>{
       setClickHospital(hospital);
     };

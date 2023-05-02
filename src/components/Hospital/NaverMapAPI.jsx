@@ -6,6 +6,7 @@ import Hospital from 'lib/img/hospital.png';
 export const NaverMapAPI = (props) => {
     const [selectedHospital, setSelectedHospital] = useState(null);
 
+
     const handleMarkerClick = ( hospital) => {
         // 클릭한 마커에 대한 정보를 selectedHospital에 저장(클릭한 마커 정중앙 배치)
         setSelectedHospital(hospital);
@@ -15,10 +16,10 @@ export const NaverMapAPI = (props) => {
     };
 
     //병원 정보창에서 병원 클릭시 해당 병원 맵 가운데로 배치
+    //모든 파일에서 위치바뀔때마다 가운데 조정
     useEffect(() => {
         setSelectedHospital(props.clickHospital);
       }, [props.clickHospital]);
-
 
     return (
         <NavermapsProvider
@@ -26,6 +27,7 @@ export const NaverMapAPI = (props) => {
             submodules={["geocoder"]}
         >
             <MapDiv style={{width: '50%',height: '500px'}}>
+                {/* 만약 병원 마커를 클릭하면 마커가 중심이 된다. */}
                 <NaverMap 
                     center={
                         selectedHospital
@@ -43,7 +45,7 @@ export const NaverMapAPI = (props) => {
                         key={hospital.id} 
                         position={{ lat: hospital.wgs84Lat, lng: hospital.wgs84Lon }}
                         title={hospital.dutyName}
-                        
+                        //선택된 병원 마커만 icon바꿔주기
                         icon={selectedHospital&&selectedHospital.id===hospital.id?
                             {url: SelectedHospital, scaledSize: new window.naver.maps.Size(50, 50)}
                             :{url: Hospital, scaledSize: new window.naver.maps.Size(50, 50)}}
