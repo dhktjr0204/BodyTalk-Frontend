@@ -17,7 +17,6 @@ const Positioner = styled.div`
 const HeaderBackground = styled.div`
     background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
     display: flex;
-
     height: auto;
     ${shadow(1)};
 `;
@@ -38,6 +37,8 @@ const HeaderContents = styled.div`
     ${media.tablet`
         width: 100%;
     `}
+    width: 80%;
+    margin: 0 auto;
 `;
 
 // 로고
@@ -45,6 +46,7 @@ const Logo = styled.div`
     font-size: 2rem;
     letter-spacing: 2px;
     color: white;
+    font-weight: bold;
     font-family: 'Rajdhani';
 `;
 
@@ -58,7 +60,7 @@ const Header = ({children}) => {
         <Positioner>
             <HeaderBackground>
                 <HeaderContents>
-                    <Logo>React App</Logo>
+                    <Logo>Body Talk</Logo>
                     <Spacer/>
                     {children}
                 </HeaderContents>

@@ -10,6 +10,8 @@ const MenuContents = styled.div`
     align-items: center;
     padding-right: 1rem;
     padding-left: 1rem;
+    width: 80%;
+    margin: 0 auto;
 `;
 
 const Menu = styled(Link)`
@@ -18,7 +20,7 @@ const Menu = styled(Link)`
     letter-spacing: 1px;
     font-family: 'Rajdhani';
     text-decoration: none;
-    padding: 1rem;
+    padding: 1rem 5rem 1rem 0;
 
     &:hover {
         font-size: 1.2rem;
@@ -36,7 +38,7 @@ const CMenu = styled(Link)`
     letter-spacing: 1px;
     font-family: 'Rajdhani';
     text-decoration: none;
-    padding: 1rem;
+    padding: 1rem 5rem 1rem 0;
 
     &:hover {
         font-size: 1.2rem;

@@ -95,7 +95,7 @@ function AuthWrapper({ setModalOpen }) {
             <ShadowedBox></ShadowedBox>
             <ShadowedBox>
                 <LogoWrapper>
-                    <Logo>React App<XButton onClick={closeModal}>X</XButton>
+                    <Logo>Body Talk<XButton onClick={closeModal}>X</XButton>
                      </Logo>
                 </LogoWrapper>
                 <Contents>

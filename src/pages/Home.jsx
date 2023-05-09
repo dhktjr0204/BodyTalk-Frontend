@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import HomeContent from 'components/Home/HomeContent';
 import axios from "axios";
+import oc from 'open-color';
 import RankContent from 'components/Home/RankContent';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,27 +12,63 @@ const HomeWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 80%;
+    margin: 0 auto;
 `;
 const Button = styled.button`
-  padding: 8px 16px;
-  background-color: #0077c2;
-  color: #ffffff;
+  padding: 8px 50px;
+  color: #FFFFFF;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 20px;
   cursor: pointer;
   margin-top: 16px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+
+  &:hover {
+    color: #FFFFFF;
+    background: #000000;
+}
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const VerticalLine = styled.div`
   border-left: 1px solid gray;
   height: 450px;
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    fontFamily: '나눔 고딕', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
+`;
+
+const QText = styled.div`
+    font-size: 20px;
+    color: black;
+    letter-spacing: 1px;
+    fontFamily: 'Bazzi';
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Home = ({setIsLoggedIn}) => {
@@ -69,14 +106,16 @@ const Home = ({setIsLoggedIn}) => {
   <div>
     <br></br><br></br><br></br>
     <HomeMenu></HomeMenu>
+    <Text>진단 결과 순위</Text>
     <HomeWrapper>
       <HomeContent diagObj={diagObj} style={{ width: '45%' }}/>
-      <VerticalLine />
+
       <RankContent diagObj={diagObj} style={{ width: '45%' }}/>
     </HomeWrapper>
     <div>
       <br /><br /><br />
       <Wrapper>
+        <QText>바디톡에 질문해보세요!</QText>
         <Button 
         size="large" 
         onClick={navigateToPurchase}>

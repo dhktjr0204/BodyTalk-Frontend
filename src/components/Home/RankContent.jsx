@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import oc from 'open-color';
 
 
 const RankList = styled.div`
@@ -11,28 +12,36 @@ const RankList = styled.div`
     margin: 0 auto;
 `;
 
+const Line = styled.div`
+  width: ${({ length }) => (length ? length : '100%')};
+  height: 2px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+`;
+
 const Text = styled.span`
-    font-size: 30px;
+    font-size: 20px;
     color: black;
     letter-spacing: 1px;
     fontFamily: 'Bazzi';
 `;
 
 const NumText = styled.span`
-    font-size: 30px;
+    font-size: 20px;
     color: black;
     letter-spacing: 1px;
-    font-family: 'Rajdhani';
+    font-family: 'Bazzi';
 `;
 const RankContent = ({diagObj}) => {
+    const slicedDiagObj = diagObj.slice(0, -1);
     return(
         <RankList>
-            {diagObj.map((diagObj, index) => (
+            <Line length="60%" />
+            {slicedDiagObj.map((diagObj, index) => (
                 <div key={index}>
                     <br></br>
                     <NumText>{index+1}.</NumText>
-                    <Text>{diagObj.name}</Text>
-                    <Text>{diagObj.percent}%</Text>
+                    <Text> {diagObj.name}</Text>
+                    <Text> {diagObj.percent}%</Text>
                 </div>
         ))}
         </RankList>

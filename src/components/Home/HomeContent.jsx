@@ -25,15 +25,31 @@ const HomeContent = ({diagObj}) => {
     datasets: [
       {
         data: diagObj.map((obj) => obj.percent),
-        backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#2E8B57","#9370DB","#00BFFF"],
-        hoverBackgroundColor: ["#FF6384","#36A2EB","#FFCE56","#2E8B57","#9370DB","#00BFFF"],
+        backgroundColor: ["#8ce99a","#63e6be","#66d9e8","#74c0fc","#91a7ff","#dee2e6"],
+        hoverBackgroundColor: ["#8ce99a","#63e6be","#66d9e8","#74c0fc","#91a7ff","#dee2e6"],
       },
     ],
   };
+
+  const options = {
+    cutout: 130,
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        boxWidth: 500,
+        labels: {
+          boxWidth: 12
+        },
+      },
+    },
+  };
+  
   console.log(data)
   return (
     <BigHomeGraph>
-        <Doughnut data={data} />
+        <Doughnut data={data} options={options}/>
     </BigHomeGraph>
       );
 };
