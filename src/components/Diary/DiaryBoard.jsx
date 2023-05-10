@@ -57,7 +57,7 @@ const DiaryBoard = ({ date, diarys }) =>{
   }
 
   return (
-    <DiaryBoardWrapper>
+    <>
       <div style={{display: 'flex', alignItems: 'center', marginBottom: '16px'}}>
         <h2>{moment(date).format('YYYY년 M월 D일')} 일기 목록</h2>
         <CreateButton onClick={() => navigate('/new-diary',{ state: { date } })}>
@@ -81,8 +81,7 @@ const DiaryBoard = ({ date, diarys }) =>{
         </DiaryWrapper>
         ))}
       </div>
-
-    </DiaryBoardWrapper>
+    </>
   );
  }
 export default DiaryBoard;

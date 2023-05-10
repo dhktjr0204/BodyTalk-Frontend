@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import { useNavigate } from 'react-router-dom';
 import moment from "moment";
+import oc from 'open-color';
 import DiaryBoard from 'components/Diary/DiaryBoard';
 import styled from 'styled-components';
 import CalenderForm from 'components/Diary/CalendarForm';
@@ -32,6 +33,39 @@ const ChartButton = styled.button`
     font-size: 16px;
     cursor: pointer;
     margin-top: 16px;
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    fontFamily: '나눔 고딕', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
+`;
+
+const BoardWrapper = styled.div`
+    position: fixed;
+    right: -100%;
+    margin: 0 auto;
+    width: 30%; 
+    height: 50%;
+    background-color: #f5f5f5;
+    padding: 10px 10px;
+    overflow-y: scroll;
+    border-radius: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    transition: right 1s ease;
+
+    &.isClicked {
+        right: 0;
+    }
 `;
 
 const Diary = () => {
@@ -106,16 +140,23 @@ const Diary = () => {
         setMark(marks);
         }, [diarys]);
 
+    useEffect(() => {
+        console.log("isClicked changed:", isClicked);
+    }, [isClicked]);
+        
+
 //mark는 사용자가 적은 일기의 날짜들이 저장되어 있음
    return (
     <div>
         <br></br><br></br><br></br>
         <DiaryMenu></DiaryMenu>
-        <h1>증상 일기 쓰기</h1>
+        <Text>증상 일기 쓰기</Text>
         
         <DiaryCalendarWrapper>
             <CalenderForm onChange={onClickDate} date={date} mark={mark} />
-            {isClicked && <DiaryBoard date={date} diarys={diarys} />}
+            <BoardWrapper className={isClicked && "isClicked"}>
+                {isClicked && <DiaryBoard date={date} diarys={diarys} />}
+            </BoardWrapper>
         </DiaryCalendarWrapper>
         <ChartWrapper>
             <ChartButton onClick={onClickChart}>통계 보기</ChartButton>
