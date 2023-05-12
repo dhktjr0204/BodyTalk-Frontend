@@ -11,7 +11,7 @@ const DotStyle = styled.div`
 const Dot = () =>{
     return(
         <div className="flex justify-center items-center absoluteDiv">
-            <DotStyle></DotStyle>
+            <br></br><DotStyle></DotStyle>
         </div>
     );
     

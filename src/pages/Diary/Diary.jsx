@@ -16,6 +16,20 @@ const DiaryCalendarWrapper = styled.div`
     align-items: center;
     height: 55vh;
 `;
+
+const CalendarFormWrapper = styled.div`
+    width: 58%;
+    height: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; 
+
+    transform: ${({isClicked}) => isClicked ? 'translateX(-155px)' : 'translateX(0)'};
+    transition: transform 1s ease-in-out;
+`;
+
 const ChartWrapper = styled.div`
     display: flex;
     height: 100%;
@@ -153,7 +167,9 @@ const Diary = () => {
         <Text>증상 일기 쓰기</Text>
         
         <DiaryCalendarWrapper>
-            <CalenderForm onChange={onClickDate} date={date} mark={mark} />
+            <CalendarFormWrapper isClicked={isClicked}>
+                <CalenderForm onChange={onClickDate} date={date} mark={mark} />
+            </CalendarFormWrapper>
             <BoardWrapper className={isClicked && "isClicked"}>
                 {isClicked && <DiaryBoard date={date} diarys={diarys} />}
             </BoardWrapper>

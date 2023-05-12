@@ -1,11 +1,12 @@
 import React from 'react';
 import Calendar from 'react-calendar';
+import './Calendar.css';
 import moment from "moment";
 import Dot from './Dot';
 import styled from 'styled-components';
 
 const CalendarWrapper= styled.div`
-    width: 65%;
+    width: 70%;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -17,7 +18,7 @@ const CalendarWrapper= styled.div`
 
 const CalendarStyle = styled(Calendar)`
   width: 100%;
-  height: 100%;
+  height: 120%;
   font-size: 25px;
   border-radius: 10px;
 `;
@@ -34,7 +35,7 @@ const DotWrapper = styled.div`
 //걍 새로 만드는게 더나을수도
 const CalenderForm = ({ onChange, date, mark }) =>{
     return (
-      <CalendarWrapper>
+      <>
         <CalendarStyle 
             onChange={onChange}
             value={date}
@@ -50,7 +51,7 @@ const CalenderForm = ({ onChange, date, mark }) =>{
                 }
               }}
         />
-      </CalendarWrapper>
+      </>
 );
     
 }
