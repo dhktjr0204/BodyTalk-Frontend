@@ -63,8 +63,8 @@ const MyPageUpdate = () => {
                         성별:
                         <select value={updatedUserInfo.sex} onChange={handleSexChange}>
                         <option value=""></option>
-                        <option value="남자">남자</option>
-                        <option value="여자">여자</option>
+                        <option value="male">남자</option>
+                        <option value="female">여자</option>
                         </select>
                     </label>
                     <br />
