@@ -69,8 +69,8 @@ const BoardWrapper = styled.div`
     right: -100%;
     margin: 0 auto;
     width: 30%; 
-    height: 50%;
-    background-color: #f5f5f5;
+    height: 52%;
+    background-color: white;
     padding: 10px 10px;
     overflow-y: scroll;
     border-radius: 16px;
