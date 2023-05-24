@@ -17,7 +17,37 @@ import styled from 'styled-components';
 
 const HomeContent = ({diagObj}) => {
   if (diagObj.length === 0) {
-    return <div>Loading...</div>;
+    const loadingData = {
+      labels: ["Loading..."],
+      datasets: [
+        {
+          data: [100],
+          backgroundColor: ["#cacaca"],
+          hoverBackgroundColor: ["#cacaca"],
+        },
+      ],
+    };
+
+    const options = {
+      cutout: 130,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom",
+          boxWidth: 500,
+          labels: {
+            boxWidth: 12,
+          },
+        },
+      },
+    };
+
+    return (
+      <BigHomeGraph>
+        <Doughnut data={loadingData} options={options} />
+      </BigHomeGraph>
+    );
   }
 
   const data = {

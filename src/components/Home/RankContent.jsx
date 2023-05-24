@@ -32,6 +32,14 @@ const NumText = styled.span`
     font-family: 'Bazzi';
 `;
 const RankContent = ({diagObj}) => {
+    if (diagObj.length === 0) {
+        return(
+            <RankList>
+                <Text> Loading...</Text>
+            </RankList>
+            
+        );
+    }
     const slicedDiagObj = diagObj.slice(0, -1);
     return(
         <RankList>
