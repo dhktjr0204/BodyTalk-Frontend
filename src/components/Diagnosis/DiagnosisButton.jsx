@@ -3,19 +3,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import { remove } from 'react-cookies';
+import oc from 'open-color';
 
 const Button = styled.button`
-  background-color: #86A8E7;
+  padding: 8px 50px;
+  color: #FFFFFF;
   border: none;
-  color: white;
-  padding: 12px 24px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-size: 20px;
   cursor: pointer;
   margin-top: 16px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+  align: center;
+
+  &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+}
 `;
 
 const DiagnosisButton = ({inputText,setIsLoading,setDiagnosis}) =>{
@@ -75,7 +79,7 @@ const DiagnosisButton = ({inputText,setIsLoading,setDiagnosis}) =>{
     };
 
     return(
-        <Button onClick={handleSubmit}>확인</Button>
+        <Button onClick={handleSubmit}>진단 받기</Button>
     )
 }
 export default DiagnosisButton;

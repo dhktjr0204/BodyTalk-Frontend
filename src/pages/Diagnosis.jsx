@@ -1,30 +1,57 @@
 import DiagnosisButton from 'components/Diagnosis/DiagnosisButton';
 import DiagnosisDetail from 'components/Diagnosis/DiagnosisDetail';
 import { DiagnosisMenu } from 'components/MenuBar';
+import Loading from 'components/Loading/Loading'
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import oc from 'open-color';
 
 const CenterWrapper = styled.div`
-  width: 60%;
+  width: 75%;
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 `;
 
 
 const TextInput = styled.textarea`
-  font-size: 18px;
+  font-size: 25px;
   margin-bottom: 16px;
-  border: 1px solid gray;
+  border: 1px solid ${oc.teal[6]};
   padding: 24px;
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 200px;
+  height: 300px;
   white-space: pre-wrap;
+  border-radius: 3px;
   overflow-wrap: break-word;
+
+  &:focus {
+    border-color: ${oc.teal[6]};
+    box-shadow: 0 0 5px ${oc.teal[6]};
+    outline: none;
+  }
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
 `;
 
 const Diagnosis = () => {
@@ -73,19 +100,23 @@ const Diagnosis = () => {
   <div>
     <br></br><br></br><br></br>
     <DiagnosisMenu></DiagnosisMenu>
+    <Text>증상 진단</Text>
     <CenterWrapper>
       {isLoading ? (
-        <div>
-        <span>Loading...</span>
-        </div>
+        <Wrapper>
+          <Loading></Loading>
+        </Wrapper>
         ):(
         <div>
-        <h2>증상을 입력해주세요!</h2>
-        <TextInput type="text" value={inputText} onChange={(e) => handleInputChange(e.target.value)}></TextInput>
-        <DiagnosisButton inputText={inputText} setIsLoading={setIsLoading} setDiagnosis={setDiagnosis}>진단받기</DiagnosisButton>
-         </div>
+          <TextInput type="text" value={inputText} onChange={(e) => handleInputChange(e.target.value)}></TextInput>
+
+          <Wrapper>
+            <DiagnosisButton inputText={inputText} setIsLoading={setIsLoading} setDiagnosis={setDiagnosis}></DiagnosisButton>
+          </Wrapper>
+        </div>
          )}
     </CenterWrapper>
+    
 </div>
 );
 };
