@@ -26,8 +26,8 @@ const Button = styled.button`
   background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
 
   &:hover {
-    color: #FFFFFF;
-    background: #000000;
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
 }
 `;
 
@@ -47,7 +47,7 @@ const Text = styled.div`
     font-size: 30px;
     color: transparent;
     letter-spacing: 1px;
-    fontFamily: '나눔 고딕', sans-serif;
+    font-family: 'NanumGothic', sans-serif;
     width: 80%;
     margin: 0 auto;
     margin-top: 20px;

@@ -69,7 +69,7 @@ const BoardWrapper = styled.div`
     right: -100%;
     margin: 0 auto;
     width: 30%; 
-    height: 52%;
+    height: 72%;
     background-color: white;
     padding: 10px 10px;
     overflow-y: scroll;
@@ -80,6 +80,22 @@ const BoardWrapper = styled.div`
     &.isClicked {
         right: 0;
     }
+`;
+
+const Button = styled.button`
+  padding: 8px 50px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 16px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+
+  &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+}
 `;
 
 const Diary = () => {
@@ -175,7 +191,7 @@ const Diary = () => {
             </BoardWrapper>
         </DiaryCalendarWrapper>
         <ChartWrapper>
-            <ChartButton onClick={onClickChart}>통계 보기</ChartButton>
+            <Button onClick={onClickChart}>통계 보기</Button>
         </ChartWrapper>
        
     </div>
