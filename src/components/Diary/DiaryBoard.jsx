@@ -21,18 +21,38 @@ const DiaryBoardWrapper = styled.div`
 //다이어리 컨텐츠 감싸주는거
 const DiaryWrapper = styled.div`
     margin-bottom: 10px;
-    padding: 8px 8px;
+    padding: 0 8px;
     margin-right: 4px;
     border-radius: 8px;
     border: 2px solid gray;
+    justify-content: space-between;
+    position: relative;
 
+    &:hover::after {
+    content: '수정하기';
+    position: absolute;
+    top: -25px;
+    right: 0;
+    padding: 4px 8px;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 `;
 //다이어리 내용 폰트
 const DiaryContentText = styled.div`
-  font-family: 'monospace';
+  font-family: 'NanumGothic';
   font-weight:700;
-  font-size: 30px;
-  color: #8C8C8C;
+  font-size: 25px;
+  color: #495057;
+  margin-bottom: 10px;
 `;
 //글쓰기 버튼
 const CreateButton = styled.button`
@@ -93,14 +113,14 @@ const DiaryBoard = ({ date, diarys }) =>{
         {filteredDiarys.map((diary) => (
         //클릭한 날짜와 일치하는 일기만 보여준다. 클릭하면 /diary/{id}로 이동
         <DiaryWrapper key={diary.id} onClick={() => handleDiaryClick(diary.id)}>
+              <DiaryDeleteButton id={diary.id}></DiaryDeleteButton>
+              <br></br>
 
+              <div style={{margin: '16px 0'}}>
+                  <TagColorButton tags={diary.tag}></TagColorButton>
+              </div>
 
-             <DiaryContentText>{diary.content} </DiaryContentText> 
-
-            <div style={{margin: '16px 0'}}>
-                <TagColorButton tags={diary.tag}></TagColorButton>
-            </div>
-            <DiaryDeleteButton id={diary.id}></DiaryDeleteButton>
+              <DiaryContentText>{diary.content} </DiaryContentText> 
         </DiaryWrapper>
         ))}
       </div>

@@ -5,16 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { remove } from 'react-cookies';
 
 const DeleteButton = styled.button`
-  background-color: #C4282B;
+  background-color: #FFFFFF;
   border: none;
-  color: white;
-  padding: 12px 24px;
-  text-align: center;
+  color: red;
+  padding: 0;
+  margin-top: 8px;
+  text-align: right;
   display: inline-block;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 16px;
+  float: right;
 `;
 
 
@@ -54,7 +55,7 @@ const DiaryDeleteButton = ({id}) =>{
 
 
 return(
-  <DeleteButton onClick={handleDelete}>삭제</DeleteButton>
+  <DeleteButton onClick={handleDelete}>X</DeleteButton>
   )
 }
 

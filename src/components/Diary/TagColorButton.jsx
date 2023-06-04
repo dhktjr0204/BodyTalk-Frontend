@@ -4,14 +4,11 @@ import styled from 'styled-components';
 const TagButton = styled.button`
     background-color: ${props => props.color};
     color: white;
-    padding: 10px;
+    padding: 5px;
     border: none;
     border-radius: 5px;
     margin-right: 0.5rem;
-    margin: 5px;   &:hover {
-        /* 클릭시 아래로 미세하게 움직임 */
-        transform: translateY(3px);
-    }
+    margin: 5px;   
 `;
 
 const TagColorButton = ({tags}) =>{

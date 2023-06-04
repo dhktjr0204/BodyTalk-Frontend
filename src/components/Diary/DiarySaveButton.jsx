@@ -3,20 +3,24 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import { remove } from 'react-cookies';
+import oc from 'open-color';
 
 
 const SaveButton = styled.button`
-  background-color: #86A8E7;
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    padding: 8px 50px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 16px;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+
+    &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+    }
 `;
 
 const DiarySaveButton = ({diary}) =>{
@@ -84,7 +88,7 @@ const DiarySaveButton = ({diary}) =>{
     };
 
     return(
-        <SaveButton onClick={handleSave}>확인</SaveButton>
+        <SaveButton onClick={handleSave}>일기 저장</SaveButton>
     )
 }
 export default DiarySaveButton;

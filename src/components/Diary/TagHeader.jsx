@@ -1,54 +1,78 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import oc from 'open-color';
 
 const Wrapper = styled.div`
     margin: 20px;
 `;
 
+const WrapBox = styled.div`
+    border: 2px solid #CACACA;
+    border-top-color: white;
+    margin: 0px;
+`;
+
 //선택 안된 태그
 const TagWrapper = styled.div`
-  display: inline-block;
-  padding: 10px 20px;
-  margin-right: 4px;
-  border-radius: 8px;
-  font-size: 16px;
-  border: 1px solid #8E8E8E;
+    font-family: 'NanumGothic'; 
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 4px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: 1px solid #8E8E8E;
 `;
 
 //부위(머리 기관지) 태그 스타일
 const TypeWrapper = styled.button`
-  background-color: #CFBAD0;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  &:hover {
-    background-color: #3e8e41;
-  }
+    width: calc(16.666%);
+    background-color: ${({ selected }) => (selected ? "#FFFFFF" : "#EDF0F3")};
+    border: ${({ selected }) =>
+    selected ? "2px solid #CACACA" : "none"};
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    border-radius: ${({ selected }) => selected ? "10px 10px 0 0" : "10px 10px 0 0"};
+    border-bottom: none;
+    &:hover {
+    background-color: ${({ selected }) => (selected ? "#AE7AB1" : "#FFFFFF")};
+    }
 `;
 
 //선택됐을때 태그 색
 const TagSelectWrapper = styled.div`
-  display: inline-block;
-  background-color: #BBBBBB;
-  padding: 10px 20px;
-  margin-right: 4px;
-  border-radius: 8px;
-  font-size: 16px;
-  &:hover {
-    background-color: #919191;
+    font-family: 'NanumGothic';
+    display: inline-block;
+    color: white;
+    background: linear-gradient(to right, ${oc.green[4]}, ${oc.teal[5]});
+    padding: 10px 20px;
+    margin-right: 4px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    &:hover {
+        background-color: #919191;
+    }
+`;
+
+const TText = styled.div`
+  font-family: 'NanumGothic';
+  font-size: 25px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  span {
+    margin: 0 8px;
   }
 `;
 
 const TagHeader = ({diary, setDiary}) =>{
-    const [currentType, setCurrentType] = useState("");
+    const [currentType, setCurrentType] = useState("머리");
     const [selectedTags, setSelectedTags] = useState(diary.tag);
 
     const type = {
@@ -83,7 +107,7 @@ const TagHeader = ({diary, setDiary}) =>{
         //아니라면 선택된 태그 리스트 에 추가
         else {
             if (selectedTags.length>=5){
-                alert("태그는5개까지만 선택가능합니다.");}
+                alert("태그는 5개까지만 선택가능합니다.");}
             else{setSelectedTags([...selectedTags, tag]);}
         }
     };    
@@ -92,49 +116,55 @@ const TagHeader = ({diary, setDiary}) =>{
     return (
         <Wrapper>
             <div>
-                <h1>태그를 선택해주세요! 5개까지 선택가능합니다.</h1>
                 {Object.entries(type).map(([tagType]) => (
                     <TypeWrapper
                         key={tagType}
                         onClick={() => handleTypeClick(tagType)}
+                        selected={currentType === tagType}
                         style={{
                         backgroundColor:
-                            currentType === tagType ? "#AE7AB1" : "#CFBAD0",
+                            currentType === tagType ? "#FFFFFF" : "#EDF0F3",
                     }}>{tagType}
                     </TypeWrapper>
              ))}
             </div>
+            <WrapBox>
+            <TText>태그를 선택해주세요! 5개까지 선택가능합니다.</TText>
+                {currentType && (
+                    <div style={{ display: "flex", justifyContent: "center", marginBottom: "50px" }}>
+                        <ul>
+                            {type[currentType].map((tag) =>  {
+                                //선택된 tag 색깔 바꿔주기
+                                const isTagSelected = selectedTags.includes(tag);
+                                return isTagSelected ? (
+                                    <TagSelectWrapper key={tag} onClick={() => handleTagClick(tag)}>
+                                        {tag}
+                                    </TagSelectWrapper>
+                                ) : (
+                                    <TagWrapper key={tag} onClick={() => handleTagClick(tag)}>
+                                        {tag}
+                                    </TagWrapper>
+                                );
+                                })}
+                        </ul>
+                    </div>
+                    )}  
 
-            {currentType && (
-                <div>
+                <div style={{ borderTop: "2px solid #CACACA", padding: "16px", display: "flex", justifyContent: "center" }}>
+                    <h2>선택한 태그들</h2>
                     <ul>
-                        {type[currentType].map((tag) =>  {
-                            //선택된 tag 색깔 바꿔주기
-                            const isTagSelected = selectedTags.includes(tag);
-                            return isTagSelected ? (
-                                <TagSelectWrapper key={tag} onClick={() => handleTagClick(tag)}>
-                                    {tag}
-                                </TagSelectWrapper>
-                            ) : (
-                                <TagWrapper key={tag} onClick={() => handleTagClick(tag)}>
-                                    {tag}
-                                </TagWrapper>
-                            );
-                            })}
+                        {selectedTags.map((tag) => (
+                            <TagSelectWrapper key={tag} onClick={() => handleTagClick(tag)}>
+                                {tag}
+                            </TagSelectWrapper>
+                        ))}
+
+                        <TagWrapper onClick={() => handleTagClick("clear")} style={{ color: 'white  ', background: 'red', fontWeight: 'bold' }}> 초기화 </TagWrapper>
                     </ul>
+                    
                 </div>
-                )}  
+            </WrapBox>
 
-            <div style={{ borderTop: "1px solid black", paddingTop: "16px" }}>
-                <h2>선택한 태그들</h2>
-                {selectedTags.map((tag) => (
-                    <TagSelectWrapper key={tag} onClick={() => handleTagClick(tag)}>
-                        {tag}
-                    </TagSelectWrapper>
-                ))}
-
-                <TagWrapper onClick={() => handleTagClick("clear")}> 초기화 </TagWrapper>
-            </div>
         </Wrapper> 
         );
 }
