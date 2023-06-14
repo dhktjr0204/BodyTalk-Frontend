@@ -95,7 +95,7 @@ const Diagnosis = () => {
     </div>
     )
   }
-  //증상 입력받기전에 띄우는 화면
+  //증상 입력받기전에 띄우는 화면//
   return (
   <div>
     <br></br><br></br><br></br>
