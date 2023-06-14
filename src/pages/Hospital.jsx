@@ -5,12 +5,28 @@ import NaverMapAPI from 'components/Hospital/NaverMapAPI';
 import { HospitalMenu } from 'components/MenuBar';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import oc from 'open-color';
 
 const MapAndHospitalsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 500px;
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
 `;
 
 const Hospital = () =>{
@@ -82,6 +98,7 @@ const Hospital = () =>{
         <div>
             <br></br><br></br><br></br>
             <HospitalMenu></HospitalMenu>
+            <Text>병원 찾기</Text>
             <div>
         <label htmlFor="specialty-select">진료과목 선택: </label>
         
