@@ -3,16 +3,23 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import { remove } from 'react-cookies';
+import oc from 'open-color';
 
 const DeleteButton = styled.div`
-  width: 60%;
+  padding: 8px 50px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
   cursor: pointer;
-  margin: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  margin-bottom: 24px;
+  margin: 10px;
+  background: red;
+  align: center;
+
+  &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+  }
 `;
 
 //경고창인데 gpt에서 긁어온거라 잘 모르겠음 네모안에 더 넣는 그런거인듯;;
@@ -21,6 +28,8 @@ const ConfirmDialog = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: 'NanumGothic', sans-serif;
+  font-weight: bold;
   width: 400px;
   padding: 20px;
   background-color: #fff;
@@ -28,6 +37,7 @@ const ConfirmDialog = styled.div`
   border-radius: 16px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   z-index: 9999;
+  text-align: center;
 
   h2 {
     margin-top: 0;
@@ -37,20 +47,22 @@ const ConfirmDialog = styled.div`
     margin-bottom: 20px;
   }
 
-  button {
+  button,
+  button2 {
+    font-family: 'NanumGothic', sans-serif;
+    font-weight: bold;
     margin-right: 10px;
     cursor: pointer;
     border: none;
-    background-color: #0077cc;
+    background-color: red;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
   }
 
-  button.cancel {
-    background-color: #ccc;
-    color: #000;
+  button2 {
+    background-color: gray;
   }
 `;
 
@@ -105,9 +117,9 @@ const DeleteAccountButton = ({ isLoggedIn, setIsLoggedIn }) =>{
         <>
         {showConfirmDialog && (
           <ConfirmDialog>
-            <div>정말로 탈퇴하시겠습니까?</div>
+            정말로 탈퇴하시겠습니까?<br></br><br></br>
             <button onClick={handleConfirmYes}>네</button>
-            <button onClick={handleConfirmNo}>아니오</button>
+            <button2 onClick={handleConfirmNo}>아니오</button2>
           </ConfirmDialog>
         )}
         <DeleteButton onClick={() => setShowConfirmDialog(true)}>탈퇴하기</DeleteButton>

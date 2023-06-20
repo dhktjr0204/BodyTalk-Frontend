@@ -4,14 +4,21 @@ import { remove } from 'react-cookies';
 import { useNavigate } from "react-router-dom";
 
 const Button = styled.div`
-  width: 60%;
-  cursor: pointer;
-  margin: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  margin-bottom: 24px;
+    padding: 8px 50px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px;
+    background: gray;
+    align: center;
+    flaot: left;
+
+    &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+    }
 `;
 
 

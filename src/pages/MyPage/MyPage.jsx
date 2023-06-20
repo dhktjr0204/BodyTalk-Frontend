@@ -5,25 +5,76 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { remove } from 'react-cookies';
+import oc from 'open-color';
 import DefaultMenu from 'components/MenuBar/DefaultMenu';
 
 const MypageWrapper = styled.div`
-  width: 60%;
+  font-size: 30px;
+  font-weight: bold;
+  width: 75%;
   margin: auto;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  font-family: 'NanumGothic', sans-serif;
   margin-bottom: 24px;
+  border-left: 4px solid;
+  border-image: linear-gradient(to bottom, ${oc.teal[6]}, ${oc.cyan[5]});
+  border-image-slice: 1;
+  padding: 10px 24px;
+`;
+
+const IText = styled.div`
+    font-size: 16px;
+    padding: 5px;
+    font-family: 'NanumGothic', sans-serif;
+    font-weight: lighter;
 `;
 
 const UserWrapper = styled.div`
-    width: 60%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+`;
+
+const Button = styled.button`
+  padding: 8px 50px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 0px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+  align: center;
+
+  &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+  }
 `;
 
 const MyPage = ({ isLoggedIn, setIsLoggedIn }) => {
@@ -66,18 +117,18 @@ const MyPage = ({ isLoggedIn, setIsLoggedIn }) => {
     <div>
       <br></br><br></br><br></br>
       <DefaultMenu></DefaultMenu>
+      <Text>마이페이지</Text>
       <MypageWrapper>
-        <h1>사용자 정보
-            <button onClick={handleUpdateClick}>수정</button>
-        </h1>
-        <p>닉네임: {userInfo.name}</p>
-        <p>이메일: {userInfo.email}</p>
-        <p>성별: {userInfo.sex === "female" ? "여자" : userInfo.sex === "male" ? "남자" : ""}</p>
-        <p>나이: {userInfo.age}</p>
+        내정보
+        <IText><br></br>닉네임: {userInfo.name}</IText>
+        <IText>이메일: {userInfo.email}</IText>
+        <IText>성별: {userInfo.sex === "female" ? "여자" : userInfo.sex === "male" ? "남자" : ""}</IText>
+        <IText>나이: {userInfo.age}</IText>
       </MypageWrapper>
-
+      <Wrapper><Button onClick={handleUpdateClick}>내정보 수정</Button></Wrapper>
+      <br></br><br></br><br></br>
       <MypageWrapper onClick={handleHistoryClick}>
-        <h1>최근 진료기록 보기</h1>
+        최근 진료기록 보기
       </MypageWrapper>
       <UserWrapper>
         <DeleteAccountButton isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}></DeleteAccountButton>
