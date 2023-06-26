@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import MyPageDeleteButton from 'components/MyPage/MyPageDeleteButton';
 import { remove } from 'react-cookies';
 import DefaultMenu from 'components/MenuBar/DefaultMenu';
+import oc from 'open-color';
 
 
 const MypageWrapper = styled.div`
@@ -25,6 +26,21 @@ const HistoryWrapper = styled.div`
   border-radius: 16px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   margin-bottom: 24px;
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
 `;
 
 const MyPageHistory = () => {
@@ -80,8 +96,8 @@ const MyPageHistory = () => {
         <div>
             <br></br><br></br><br></br>
             <DefaultMenu></DefaultMenu>
+            <Text>최근 진료 기록</Text>
             <MypageWrapper>
-                <h1>{name}님의 최근 진료 기록</h1>
                 <br/>
                 {Object.entries(contentsByDate).map(([date, contentList], index) => (
                     <div key={index}>
