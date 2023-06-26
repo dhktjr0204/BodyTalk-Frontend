@@ -51,7 +51,7 @@ const Text = styled.div`
     width: 80%;
     margin: 0 auto;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
     background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
     -webkit-background-clip: text; /* Safari */
@@ -69,6 +69,17 @@ const QText = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+const SText = styled.div`
+    font-size: 15px;
+    color: gray;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 79%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-weight: bold;
 `;
 
 const Home = ({setIsLoggedIn}) => {
@@ -107,6 +118,7 @@ const Home = ({setIsLoggedIn}) => {
     <br></br><br></br><br></br>
     <HomeMenu></HomeMenu>
     <Text>진단 결과 순위</Text>
+    <SText>사용자들이 많이 진단받는 진단명들 순위입니다.</SText>
     <HomeWrapper>
       <HomeContent diagObj={diagObj} style={{ width: '45%' }}/>
 
