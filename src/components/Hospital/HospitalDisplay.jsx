@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import oc from 'open-color';
 
 const HospitalBoardWrapper = styled.div`
     margin: 0 auto;
@@ -9,7 +10,10 @@ const HospitalBoardWrapper = styled.div`
     padding: 10px 10px;
     overflow-y: scroll;
     border-radius: 16px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-left: 4px solid;
+    border-image: linear-gradient(to bottom, ${oc.teal[6]}, ${oc.cyan[5]});
+    border-image-slice: 1;
+    text-align: center;
 `;
 
 const HospitalWrapper = styled.div`
@@ -72,6 +76,7 @@ const HospitalDisplay = ({hospitals, clickHospital, setClickHospital}) =>{
 
     return (
         <HospitalBoardWrapper ref={scrollRef}>
+          <h2>병원 목록</h2>
             {hospitals.map((hospital, index) => (
                 <HospitalWrapper key={hospital.id}
                   data-key={hospital.id}

@@ -7,6 +7,36 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 
+const Wrapper = styled.div`
+  width: 79%;
+  margin: auto;
+  padding: 0px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+`;
+
+const Select = styled.select`
+  width: 10%;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+  text-align: center;
+
+  &:focus {
+    border-color: ${oc.teal[6]};
+    outline: none;
+  }
+`;
+
+const Option = styled.option`
+  height: 30px;
+`;
+
+const HintOption = styled(Option)`
+  color: #888888;
+`;
+
 const MapAndHospitalsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -37,7 +67,7 @@ const Hospital = () =>{
     const [userLocation, setUserLocation] = useState({lat: 37.54,lng: 126.99});
     //현재 클릭한 병원 정보(맵 마커, 병원 정보 창 서로 업뎃해줌/ 내 위치로 바꿀땐 초기화)
     const [clickHospital, setClickHospital]=useState(null);
-    const [type, setType] = useState("내과");
+    const [type, setType] = useState("-");
 
     //내 위치 좌표 구하기
     useEffect(() => {
@@ -66,6 +96,11 @@ const Hospital = () =>{
 
     //병원 찾기 버튼 누르면 서버와 통신
     const handleHospitalButtonClick = () => {
+      if (type === "-") {
+        alert('진료과목을 선택해주세요');
+        return;
+      }
+      
       const data = {
         type:type,
         lat: userLocation.lat,
@@ -95,33 +130,32 @@ const Hospital = () =>{
     };
   
     return (
-        <div>
+          <div>
             <br></br><br></br><br></br>
             <HospitalMenu></HospitalMenu>
             <Text>병원 찾기</Text>
-            <div>
-        <label htmlFor="specialty-select">진료과목 선택: </label>
+            <Wrapper>
         
-        <select
-          id="specialty-select"
-          value={type}
-          onChange={handleTypeChange}
-        >
-          <option value="내과">내과</option>
-          <option value="안과">안과</option>
-          <option value="치과">치과</option>
-          <option value="정형외과">정형외과</option>
-          <option value="산부인과">산부인과</option>
-          <option value="비뇨기과">비뇨기과</option>
-          <option value="피부과">피부과</option>
-          <option value="정신">정신과</option>
-        </select>
-
-        </div>
+              <Select
+                id="specialty-select"
+                value={type}
+                onChange={handleTypeChange}
+              >
+                <HintOption value="-">진료과목 선택</HintOption>
+                <Option value="내과">내과</Option>
+                <Option value="안과">안과</Option>
+                <Option value="치과">치과</Option>
+                <Option value="정형외과">정형외과</Option>
+                <Option value="산부인과">산부인과</Option>
+                <Option value="비뇨기과">비뇨기과</Option>
+                <Option value="피부과">피부과</Option>
+                <Option value="정신">정신과</Option>
+              </Select>
             
             <button onClick={handleHospitalButtonClick}>병원찾기</button>
             <AddressSearch setUserLocation={setUserLocation} setClickHospital={setClickHospital} />
             <button onClick={handleCurrentLocationClick}>내 위치</button>
+
             <MapAndHospitalsWrapper>
                 <NaverMapAPI
                   Latitude={userLocation.lat}
@@ -130,8 +164,10 @@ const Hospital = () =>{
                   clickHospital={clickHospital} setClickHospital={setClickHospital}
                 />
             {hospitals.length>0&&(<HospitalDisplay hospitals={hospitals} clickHospital={clickHospital} setClickHospital={setClickHospital}/>)}
+            {hospitals.length>0||(<HospitalDisplay hospitals={hospitals} clickHospital={clickHospital} setClickHospital={setClickHospital}/>)}
             </MapAndHospitalsWrapper>
-        </div>
+            </Wrapper>
+          </div>
     );
 }
 
