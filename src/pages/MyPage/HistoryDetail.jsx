@@ -5,15 +5,64 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { remove } from 'react-cookies';
 import DefaultMenu from 'components/MenuBar/DefaultMenu';
+import oc from 'open-color';
 
 const MypageWrapper = styled.div`
-  width: 60%;
+  width: 79%;
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
+  padding: 0px;
   border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   margin-bottom: 24px;
+`;
+
+const Text = styled.div`
+    font-size: 30px;
+    color: transparent;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    -webkit-background-clip: text; /* Safari */
+    -webkit-text-fill-color: transparent; /* Safari */
+`;
+
+const BackButton = styled.button`
+  padding: 8px 50px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 16px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+  align: center;
+
+  &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+`;
+
+const DiaWrapper = styled.div`
+  font-weight: normal;
+  width: 99%;
+  margin: auto;
+  cursor: pointer;
+  font-family: 'NanumGothic', sans-serif;
+  border-left: 4px solid;
+  border-image: linear-gradient(to bottom, ${oc.teal[6]}, ${oc.cyan[5]});
+  border-image-slice: 1;
+  padding: 10px 24px;
 `;
 
 const HistoryDetail = () => {
@@ -43,25 +92,34 @@ const HistoryDetail = () => {
       });
   }, [id]);
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+
   return (
     <div>
-      <br /><br /><br />
+      <br/><br/><br/>
       <DefaultMenu></DefaultMenu>
+      <Text>진료 기록</Text>
       <MypageWrapper>
-        <h1>질문 내용</h1>
-        <h1>{HistoryInfo.content}</h1>
-        <br />
-        <h1>증상</h1>
-        <h2>{HistoryInfo.disease}</h2>
-        <br />
-        <h1>설명</h1>
-        <h2>{HistoryInfo.info}</h2>
-        <br />
-        <h1>원인</h1>
-        <h2>{HistoryInfo.cause}</h2>
-        <br />
-        <h1>방문해야될 병원</h1>
-        <h2>{HistoryInfo.type}</h2>
+        <h2>질문 내용</h2>
+        <DiaWrapper>{HistoryInfo.content}</DiaWrapper>
+        <br/>
+        <h2>증상</h2>
+        <DiaWrapper>{HistoryInfo.disease}</DiaWrapper>
+        <br/>
+        <h2>설명</h2>
+        <DiaWrapper>{HistoryInfo.info}</DiaWrapper>
+        <br/>
+        <h2>원인</h2>
+        <DiaWrapper>{HistoryInfo.cause}</DiaWrapper>
+        <br/>
+        <h2>방문해야될 병원</h2 >
+        <DiaWrapper>{HistoryInfo.type}</DiaWrapper>
+        <ButtonWrapper>
+          <BackButton onClick={handleGoBack}>돌아가기</BackButton>
+        </ButtonWrapper>
       </MypageWrapper>
     </div>
   );
