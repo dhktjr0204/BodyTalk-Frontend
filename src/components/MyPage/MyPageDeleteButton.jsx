@@ -3,18 +3,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { remove } from 'react-cookies';
 import { useNavigate } from 'react-router-dom';
+import oc from 'open-color';
 
 const DeleteButton = styled.button`
-    background-color: #C4282B;
     border: none;
-    color: white;
-    padding: 12px 24px;
+    color: red;
     text-align: center;
     display: inline-block;
+    font-family: 'NanumGothic', sans-serif;
     font-size: 16px;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 16px;
+    float: right;
+
+    &:hover::after {
+        content: '삭제하기';
+        position: absolute;
+        top: -25px;
+        right: 0;
+        padding: 4px 8px;
+        background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+        color: #fff;
+        border-radius: 4px;
+        font-size: 12px;
+        opacity: 1;
+        z-index: 2;
+      }
 `;
 
 const MyPageDeleteButton = ({id}) =>{
@@ -52,7 +66,7 @@ const MyPageDeleteButton = ({id}) =>{
     }
 
     return(
-        <DeleteButton onClick={handleDelete}>삭제</DeleteButton>
+        <DeleteButton onClick={handleDelete}>X</DeleteButton>
     )
 }
 export default MyPageDeleteButton;
