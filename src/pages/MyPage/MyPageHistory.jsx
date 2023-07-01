@@ -9,23 +9,47 @@ import oc from 'open-color';
 
 
 const MypageWrapper = styled.div`
-  width: 60%;
+  width: 79%;
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
+  padding: 0px;
   border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   margin-bottom: 24px;
 `;
 
+const DayWrapper = styled.div`
+  font-weight: normal;
+  width: 99%;
+  margin: auto;
+  cursor: pointer;
+  font-family: 'NanumGothic', sans-serif;
+  border-left: 4px solid;
+  border-image: linear-gradient(to bottom, ${oc.teal[6]}, ${oc.cyan[5]});
+  border-image-slice: 1;
+  padding: 10px 24px;
+`;
+
 const HistoryWrapper = styled.div`
+  position: relative;
   width: 100;
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 24px;
+  padding: 5px;
   border-radius: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   margin-bottom: 24px;
+  border: 2px solid gray;
+
+  &:hover::after {
+    content: '상세보기';
+    position: absolute;
+    top: -25px;
+    right: 0;
+    padding: 4px 8px;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+
+
+  }
 `;
 
 const Text = styled.div`
@@ -41,6 +65,14 @@ const Text = styled.div`
     background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
     -webkit-background-clip: text; /* Safari */
     -webkit-text-fill-color: transparent; /* Safari */
+`;
+
+const Disease = styled.h2`
+  font-weight: normal;
+`;
+
+const Content = styled.h3`
+  font-weight: normal;
 `;
 
 const MyPageHistory = () => {
@@ -98,18 +130,18 @@ const MyPageHistory = () => {
             <DefaultMenu></DefaultMenu>
             <Text>최근 진료 기록</Text>
             <MypageWrapper>
-                <br/>
                 {Object.entries(contentsByDate).map(([date, contentList], index) => (
                     <div key={index}>
-                        <h1 style={{color: "#4576F6"}}>{date}</h1>
-
+                        <h1 style={{color: "#000000"}}>{date}</h1>
+                        <DayWrapper>
                         {contentList.map((content, idx) => (
                             <HistoryWrapper key={idx} onClick={() => handleHistoryClick(content.id)}>
                                 <MyPageDeleteButton id={content.id}></MyPageDeleteButton>
-                                <h2>{content.content}</h2>
-                                <h3>{content.disease}</h3>
+                                <Disease>{content.disease}</Disease>
+                                <Content>{content.content}</Content>
                             </HistoryWrapper>
                         ))}
+                        </DayWrapper>
                     </div>
                  ))}
             </MypageWrapper>
