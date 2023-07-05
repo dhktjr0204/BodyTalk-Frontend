@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import BarChart from 'components/Chart/BarChart';
 import { useNavigate } from 'react-router-dom';
 import { remove } from 'react-cookies';
+import oc from 'open-color';
 
 //차트랑 버튼 수직으로 배치하기
 const ChartAndButtonWrapper = styled.div`
@@ -41,14 +42,20 @@ const CenterWrapper=styled.div`
 `;
 
 const ReturnButton = styled.button`
-    padding: 8px 16px;
-    background-color: #0077c2;
-    color: #ffffff;
+    padding: 8px 50px;
+    color: #FFFFFF;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 20px;
     cursor: pointer;
-    margin-top: 16px;
+    margin-top: 0px;
+    background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+    align: center;
+
+    &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+    }
 `;
 
 const DiaryChart = () => {
