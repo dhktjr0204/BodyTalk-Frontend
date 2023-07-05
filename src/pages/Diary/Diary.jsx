@@ -14,7 +14,7 @@ const DiaryCalendarWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 55vh;
+    height: 100%;
 `;
 
 const CalendarFormWrapper = styled.div`
@@ -38,17 +38,6 @@ const ChartWrapper = styled.div`
     align-items: center;
 `;
 
-const ChartButton = styled.button`
-    padding: 8px 16px;
-    background-color: #0077c2;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 16px;
-`;
-
 const Text = styled.div`
     font-size: 30px;
     color: transparent;
@@ -69,7 +58,7 @@ const BoardWrapper = styled.div`
     right: -100%;
     margin: 0 auto;
     width: 30%; 
-    height: 72%;
+    height: 70%;
     background-color: white;
     padding: 10px 10px;
     overflow-y: scroll;
