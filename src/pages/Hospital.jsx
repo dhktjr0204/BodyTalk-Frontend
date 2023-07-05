@@ -15,8 +15,14 @@ const Wrapper = styled.div`
   margin-bottom: 24px;
 `;
 
+const SelectWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Select = styled.select`
-  width: 10%;
+  width: 30%;
   height: 30px;
   border: 2px solid black;
   border-radius: 4px;
@@ -31,10 +37,6 @@ const Select = styled.select`
 
 const Option = styled.option`
   height: 30px;
-`;
-
-const HintOption = styled(Option)`
-  color: #888888;
 `;
 
 const MapAndHospitalsWrapper = styled.div`
@@ -59,6 +61,88 @@ const Text = styled.div`
     -webkit-text-fill-color: transparent; /* Safari */
 `;
 
+const SText = styled.div`
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    color: gray;
+    letter-spacing: 1px;
+    font-family: 'NanumGothic', sans-serif;
+    width: 79%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-weight: bold;
+    align-items: center;
+`;
+
+const Button = styled.button`
+  width: 250px;
+  padding: 8px 20px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 5px;
+  background: linear-gradient(to right, ${oc.teal[6]}, ${oc.cyan[5]});
+  align: center;
+
+  &:hover {
+    /* 클릭시 아래로 미세하게 움직임 */
+    transform: translateY(3px);
+}
+`;
+
+const ButtonWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+`;
+
+const ConfirmDialog = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'NanumGothic', sans-serif;
+  font-weight: bold;
+  width: 400px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  text-align: center;
+
+  button{
+    font-family: 'NanumGothic', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 30px;
+
+    &:hover {
+      /* 클릭시 아래로 미세하게 움직임 */
+      transform: translateY(2px);
+    }
+  }
+
+  input{
+    margin: 10px;
+    font-size: 16px;
+    height: 30px;
+
+    &:focus {
+      border-color: ${oc.teal[6]};
+      outline: none;
+    }
+  }
+`;
+
 const Hospital = () =>{
     const [hospitals, setHospitals] = useState([]);
     //현재 위치 저장(내 위치누르면 다시 내 위치로 돌아가게끔)
@@ -67,7 +151,8 @@ const Hospital = () =>{
     const [userLocation, setUserLocation] = useState({lat: 37.54,lng: 126.99});
     //현재 클릭한 병원 정보(맵 마커, 병원 정보 창 서로 업뎃해줌/ 내 위치로 바꿀땐 초기화)
     const [clickHospital, setClickHospital]=useState(null);
-    const [type, setType] = useState("-");
+    const [type, setType] = useState("내과");
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
     //내 위치 좌표 구하기
     useEffect(() => {
@@ -96,11 +181,6 @@ const Hospital = () =>{
 
     //병원 찾기 버튼 누르면 서버와 통신
     const handleHospitalButtonClick = () => {
-      if (type === "-") {
-        alert('진료과목을 선택해주세요');
-        return;
-      }
-      
       const data = {
         type:type,
         lat: userLocation.lat,
@@ -127,35 +207,76 @@ const Hospital = () =>{
     const handleCurrentLocationClick = () => {
       setClickHospital(null);
       setUserLocation(curruentLocation);
+      handleHospitalButtonClick();
     };
+
+    const handleConfirmNo = () => {
+      setShowConfirmDialog(false);
+      handleHospitalButtonClick();
+    };
+
+    useEffect(() => {
+      const handleKeyDown = (event) => {
+        if (event.keyCode === 27) {
+          handleConfirmNo();
+        }
+      };
+  
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [handleConfirmNo]);
+
+    useEffect(() => {
+      handleConfirmNo();
+    }, [userLocation]);
   
     return (
           <div>
             <br></br><br></br><br></br>
             <HospitalMenu></HospitalMenu>
             <Text>병원 찾기</Text>
+            <br></br>
             <Wrapper>
-        
-              <Select
-                id="specialty-select"
-                value={type}
-                onChange={handleTypeChange}
-              >
-                <HintOption value="-">진료과목 선택</HintOption>
-                <Option value="내과">내과</Option>
-                <Option value="안과">안과</Option>
-                <Option value="치과">치과</Option>
-                <Option value="정형외과">정형외과</Option>
-                <Option value="산부인과">산부인과</Option>
-                <Option value="비뇨기과">비뇨기과</Option>
-                <Option value="피부과">피부과</Option>
-                <Option value="정신">정신과</Option>
-              </Select>
-            
-            <button onClick={handleHospitalButtonClick}>병원찾기</button>
-            <AddressSearch setUserLocation={setUserLocation} setClickHospital={setClickHospital} />
-            <button onClick={handleCurrentLocationClick}>내 위치</button>
+              <ButtonWrapper>
+                <div>
+                  <SelectWrapper>
+                    <Button onClick={handleCurrentLocationClick}>내 주변 병원찾기</Button>
+                  </SelectWrapper>
+                </div>
+                <div>
+                <SText>진료과목을 선택해주세요!</SText>
+                <SelectWrapper>
+                  <Select
+                    id="specialty-select"
+                    value={type}
+                    onChange={handleTypeChange}
+                  >
+                    <Option value="내과">내과</Option>
+                    <Option value="안과">안과</Option>
+                    <Option value="치과">치과</Option>
+                    <Option value="정형외과">정형외과</Option>
+                    <Option value="산부인과">산부인과</Option>
+                    <Option value="비뇨기과">비뇨기과</Option>
+                    <Option value="피부과">피부과</Option>
+                    <Option value="정신">정신과</Option>
+                  </Select>
+                </SelectWrapper>
+                </div>
+                <div>
+                  <SelectWrapper>
+                    <Button onClick={() => setShowConfirmDialog(true)}>지역명으로 병원찾기</Button>
+                  </SelectWrapper>
+                </div>
+              </ButtonWrapper>
 
+            {showConfirmDialog && (
+              <ConfirmDialog>
+                <AddressSearch setUserLocation={setUserLocation} setClickHospital={setClickHospital}/>
+              </ConfirmDialog>
+            )}
+            <br></br><br></br>
             <MapAndHospitalsWrapper>
                 <NaverMapAPI
                   Latitude={userLocation.lat}

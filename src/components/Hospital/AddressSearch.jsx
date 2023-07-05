@@ -35,7 +35,7 @@ const AddressSearch = ({ setUserLocation, setClickHospital }) => {
 
   return (
     <form onSubmit={handleSearchSubmit}>
-      <input type="text" value={searchValue} onChange={handleInputChange} />
+      <input type="text" value={searchValue} onChange={handleInputChange} placeholder="주소를 입력해주세요"/>
       <button type="submit">검색</button>
     </form>
   );
