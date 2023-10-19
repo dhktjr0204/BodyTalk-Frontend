@@ -81,7 +81,7 @@ const Join = ({ isLoggedIn, setIsLoggedIn }) => {
             axios
                 .post(`/api/mypage/update`, data, {
                 headers: {
-                    Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+                    Authorization: "Bearer " + localStorage.getItem("accessToken"),
                 },
                 })
                 .then((res) => {

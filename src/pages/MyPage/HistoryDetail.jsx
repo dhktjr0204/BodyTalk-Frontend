@@ -73,23 +73,14 @@ const HistoryDetail = () => {
   useEffect(() => {
     axios.get(`/api/mypage/${id}`, {
       headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     })
       .then((res) => {
         console.log(res.data);
         setHistoryInfo(res.data);
       })
-      .catch((err) => {
-         if (err.response && err.response.status === 401) {
-          alert("로그인이 만료되어 로그아웃합니다.");
-          sessionStorage.removeItem("accessToken");
-          remove('JSESSIONID');//쿠키삭제
-          navigate("/");
-      } else {
-          alert("불러오기에 실패하였습니다.");
-      }
-      });
+      .catch((err) => {});
   }, [id]);
 
   const handleGoBack = () => {

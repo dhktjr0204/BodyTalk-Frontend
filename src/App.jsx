@@ -18,7 +18,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("accessToken")){
+    if (localStorage.getItem("accessToken")){
       setIsLoggedIn(true);
     }
   }, []);

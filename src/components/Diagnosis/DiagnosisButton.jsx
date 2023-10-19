@@ -34,7 +34,7 @@ const DiagnosisButton = ({inputText,setIsLoading,setDiagnosis}) =>{
         else{
           setIsLoading(true);
           //만약 비로그인 유저라면
-          if (!sessionStorage.getItem("accessToken")) {
+          if (!localStorage.getItem("accessToken")) {
               axios
                 .post(`/api/medi`, formData, {
                   headers: {
@@ -55,7 +55,7 @@ const DiagnosisButton = ({inputText,setIsLoading,setDiagnosis}) =>{
               axios
                 .post(`/api/medi`, formData, {
                   headers: {
-                    Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+                    Authorization: "Bearer " + localStorage.getItem("accessToken"),
                     "Content-Type": "multipart/form-data",
                   },
                 })
@@ -64,16 +64,7 @@ const DiagnosisButton = ({inputText,setIsLoading,setDiagnosis}) =>{
                   setDiagnosis(res.data);
                   setIsLoading(false);
                 })
-                .catch((err) => {
-                    if (err.response && err.response.status === 401) {
-                        alert("로그인이 만료되어 로그아웃합니다.");
-                        sessionStorage.removeItem("accessToken");
-                        remove('JSESSIONID');//쿠키삭제
-                        navigate("/");
-                    } else {
-                        alert("불러오기에 실패하였습니다.");
-                    }
-                });
+                .catch((err) => {});
             }
         }
     };

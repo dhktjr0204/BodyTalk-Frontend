@@ -92,23 +92,16 @@ const DeleteAccountButton = ({ isLoggedIn, setIsLoggedIn }) =>{
         axios
             .put(`/api/delete`, null, {
             headers: {
-                Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+                Authorization: "Bearer " + localStorage.getItem("accessToken"),
             },
             })
             .then((res) => {
                 console.log(res);
                 alert("탈퇴가 완료되었습니다.");
+                localStorage.clear();
                 onDeleteAccountComplete();
             })
             .catch((err) => {
-              if (err.response && err.response.status === 401) {
-                alert("로그인이 만료되어 로그아웃합니다.");
-                sessionStorage.removeItem("accessToken");
-                remove('JSESSIONID');//쿠키삭제
-                navigate("/");
-            } else {
-                alert("불러오기에 실패하였습니다.");
-            }
                 console.log("탈퇴 에러", err);
             });
     }

@@ -92,7 +92,7 @@ const Home = ({setIsLoggedIn}) => {
 
   //만약 세션에 토큰이 없으면 비로그인화면으로 바꿈, 세션 만료시 사용
   useEffect(() => {
-    if (!sessionStorage.getItem("accessToken")){
+    if (!localStorage.getItem("accessToken")){
       setIsLoggedIn(false);
     }
   }, []);

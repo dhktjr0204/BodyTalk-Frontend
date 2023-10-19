@@ -7,12 +7,14 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }) => {
     const navigate= useNavigate();  
 
     const currentUrl = new URLSearchParams(window.location.search);
-    const token = currentUrl.get("token");
+    const accessToken = currentUrl.get("accessToken");
+    const refreshToken= currentUrl.get("refreshToken")
     const isNew = currentUrl.get("isNew");
 
     useEffect(() => {
-        if (token && isNew) {
-          sessionStorage.setItem('accessToken', token);
+        if (accessToken&& refreshToken && isNew) {
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken',refreshToken);
           if (isNew === '0') {
             alert('로그인하였습니다');
             setIsLoggedIn(true);
@@ -22,7 +24,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }) => {
           alert("로그인이 성공적으로 이루어지지 않았습니다.")
           navigate(`/`);
         }
-      }, [isNew, navigate, token]);
+      }, [isNew, navigate, accessToken, refreshToken]);
     
       return (
         <>

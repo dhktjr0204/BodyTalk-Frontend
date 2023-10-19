@@ -62,11 +62,16 @@ const HospitalDisplay = ({hospitals, clickHospital, setClickHospital}) =>{
 
     //맵에서 병원 선택했을때 스크롤 이동하는 코드
     useEffect(() => {
+      //클릭된 병원이 있고, 병원 목록이 있을 때만
       if (clickHospital && scrollRef.current) {
+        //scollRef의 data-key속성 값이 clickHospital.id와 일치하는 div요소 찾기
         const selectedDiv = scrollRef.current.querySelector(`div[data-key="${clickHospital.id}"]`);
         if (selectedDiv) {
+          //선택된 div를 화면 중앙으로 스크롤한다. (부드러운 스크롤 효과 사용)
           selectedDiv.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+          //선택된 div의 css 클래스 selected를 추가(짙은 회색으로 바뀐다)
           selectedDiv.classList.add('selected');
+          //제거한 상태가 랜더링되지않다가 clickHospital이 바뀌게되면 제거된 상태가 랜더링됨
           return () => {
             selectedDiv.classList.remove('selected');
           };

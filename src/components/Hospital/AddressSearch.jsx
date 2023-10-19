@@ -5,6 +5,7 @@ const AddressSearch = ({ setUserLocation, setClickHospital }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchSubmit = (e) => {
+    //새로고침안하게
     e.preventDefault();
     // 주소를 좌표로 변환하는 API 요청 보내기
     axios.post(`/api/hospital/coordi?local=${searchValue}`)

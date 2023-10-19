@@ -30,6 +30,8 @@ const TagColorButton = ({tags}) =>{
         피부: "#ebc8fb"//보라
     };
     //타입 별로 색깔 정함
+    //tags.some은 배열 tags의 각 요소에 주어진 callback함수를 호출하고 true를 반환하면 some함수는 true반환
+    //머리,기관지,가슴이 true일때 filteredTags=머리 기관지 가슴
     const filteredTags = Object.keys(tagColors).filter(category =>
         tags.some(tag => type[category].includes(tag))
     );

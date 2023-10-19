@@ -45,45 +45,25 @@ const DiarySaveButton = ({diary}) =>{
             axios
                 .post(`/api/diary`, data, {
                 headers: {
-                    Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+                    Authorization: "Bearer " + localStorage.getItem("accessToken"),
                 },
                 })
                 .then((res) => {
                     onDiaryPostComplete();
                 })
-                .catch((err) => {
-                    if (err.response && err.response.status === 401) {
-                        alert("로그인이 만료되어 로그아웃합니다.");
-                        sessionStorage.removeItem("accessToken");
-                        remove('JSESSIONID');//쿠키삭제
-                        navigate("/");
-                    } else {
-                        alert("불러오기에 실패하였습니다.");
-                    }    
-                    console.log("다이어리 save 에러", err);
-                });
+                .catch((err) => {});
             }
         else {
             axios
                 .post(`/api/diary/${diary.id}`, data, {
                 headers: {
-                    Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
+                    Authorization: "Bearer " + localStorage.getItem("accessToken"),
                 },
                 })
                 .then((res) => {
                     onDiaryPostComplete();
                 })
-                .catch((err) => {
-                    if (err.response && err.response.status === 401) {
-                        alert("로그인이 만료되어 로그아웃합니다.");
-                        sessionStorage.removeItem("accessToken");
-                        remove('JSESSIONID');//쿠키삭제
-                        navigate("/");
-                    } else {
-                        alert("불러오기에 실패하였습니다.");
-                    }    
-                    console.log("다이어리 post 에러", err);
-                });
+                .catch((err) => {});
         }
     };
 

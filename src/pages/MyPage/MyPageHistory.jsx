@@ -90,7 +90,7 @@ const MyPageHistory = () => {
             method: "GET",
             url: `/api/mypage/contents`,
             headers: {
-                Authorization: "Bearer " + sessionStorage.getItem("accessToken")
+                Authorization: "Bearer " + localStorage.getItem("accessToken")
             }
         })
         .then((res) => {
@@ -100,16 +100,7 @@ const MyPageHistory = () => {
             setName(res.data.name);
             setContents(sortedContents);
         })
-        .catch((err) => {
-            if (err.response && err.response.status === 401) {
-                alert("로그인이 만료되어 로그아웃합니다.");
-                sessionStorage.removeItem("accessToken");
-                remove('JSESSIONID');//쿠키삭제
-                navigate("/");
-            } else {
-                alert("불러오기에 실패하였습니다.");
-            }
-        });
+        .catch((err) => {});
     }, []);
 
     //날짜별로 content모으기
