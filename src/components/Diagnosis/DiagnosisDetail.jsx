@@ -117,6 +117,7 @@ const DiagnosisDetail = ({diagnosis, userLocation, hospitals, setHospitals}) => 
                   clickHospital={clickHospital} setClickHospital={setClickHospital}
             />
             {hospitals.length>0&&(<HospitalDisplay hospitals={hospitals} clickHospital={clickHospital} setClickHospital={setClickHospital}/>)}
+            {hospitals.length>0||(<HospitalDisplay hospitals={hospitals} clickHospital={clickHospital} setClickHospital={setClickHospital}/>)}
           </MapAndHospitalsWrapper>
           </DiaWrapper>
         <ReloadButtonWrapper>
